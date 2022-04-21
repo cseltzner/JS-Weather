@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --light-primary: #0086c0;
+    --light-primary-variant: #0fa6e1;
+    --light-secondary: #e14a0f;
+    --light-background: #E1E1E18f;
+    --light-surface: #ffffff;
+    --light-error: #e60707;
+    --light-text-on-primary: #ffffff;
+    --light-text-on-surface: #32323280;
+}
+
