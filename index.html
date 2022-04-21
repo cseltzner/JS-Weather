@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <div class="sidebar">
         <div class="side-image">
@@ -282,41 +284,47 @@
         </div>
     </div>
     <main>
-        <div class="current-card-main">
-            <div class="current-city"></div>
-            <div class="current-weather-desc"></div>
-            <div class="current-weather-icon"></div>
-            <div class="current-temp"></div>
+        <div class="main-left-container">
+            <div class="card current-card-main">
+                <div class="current-city">San Francisco</div>
+                <div class="current-weather-desc">Partly Cloudy</div>
+                <div class="current-weather-icon"><img src="icons/partly_cloudy_night.svg" alt=""></div>
+                <div class="current-temp">40</div>
+            </div>
+            <div class="card daily-forecast-container">
+                <div class="daily-label">Daily forecast</div>
+                <ul class="daily-forecast-list"></ul>
+            </div>
+            <div class="card hourly-forecast-container">
+                <div class="hourly-label">Hourly forecast</div>
+                <ul class="hourly-forecast-list"></ul>
+            </div>
         </div>
-        <div class="daily-forecast-container">
-            <ul class="daily-forecast-list"></ul>
-        </div>
-        <div class="hourly-forecast-container">
-            <ul class="hourly-forecast-list"></ul>
-        </div>
-        <div class="current-weather-parameters-container">
-            <div class="feels-like-container">
-                <div class="feels-like-icon"></div>
-                <div class="feels-like-text-container">
-                    <div class="feels-like-text">Feels like</div>
-                    <div class="feels-like-value">0</div>
+        <div class="main-right-container">
+            <div class="card current-weather-parameters-container">
+                <div class="p-container feels-like-container">
+                    <div class="icon feels-like-icon"></div>
+                    <div class="text-container feels-like-text-container">
+                        <div class="feels-like-text">Feels like</div>
+                        <div class="feels-like-value">0</div>
+                    </div>
                 </div>
-                <div class="pop-container">
-                    <div class="pop-icon"></div>
+                <div class="p-container pop-container">
+                    <div class="icon pop-icon"></div>
                     <div class="text-container">
                         <div class="pop-text">Chance of rain or snow</div>
                         <div class="pop-value">0</div>
                     </div>
                 </div>
-                <div class="wind-container">
-                    <div class="wind-icon"></div>
+                <div class="p-container wind-container">
+                    <div class="icon wind-icon"></div>
                     <div class="text-container">
                         <div class="wind-text">Wind</div>
                         <div class="wind-value">0</div>
                     </div>
                 </div>
-                <div class="humidity-container">
-                    <div class="humidity-icon"></div>
+                <div class="p-container humidity-container">
+                    <div class="icon humidity-icon"></div>
                     <div class="text-container">
                         <div class="humidity-text">Humidity</div>
                         <div class="humidity-value">0</div>
@@ -324,7 +332,8 @@
                 </div>
             </div>
         </div>
+        <a href="https://www.github.com/cseltzner" target="_blank"><img class="github" src="icons/github.svg" alt="github link"></a>
     </main>
-    <footer>Copyright cseltzner</footer>
 </body>
+
 </html>
