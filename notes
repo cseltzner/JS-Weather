@@ -1,0 +1,28 @@
+Example daily li
+<li>
+    <div class="daily-date">Thu 21</div>
+    <img class="daily-icon" src="icons/sunny.svg">
+    <div class="daily-temp">
+        <div class="daily-high">90</div>
+        <div class="daily-low">64</div>
+    </div>
+    <div class="daily-pop">
+        <div class="daily-pop-icon"></div>
+        <div class="daily-pop-value">10%</div>
+    </div>
+</li>
+
+Example Hourly
+<li>
+    <div class="hourly-date">
+        <div class="hourly-date-day">Thu</div>
+        <div class="hourly-date-hour">3 PM</div>
+    </div>
+    <img src="icons/sunny.svg" alt="" class="hourly-icon">
+    <div class="hourly-temp">90</div>
+    <div class="hourly-wind">13 MPH breeze SW</div>
+    <div class="hourly-pop">
+        <img src="icons/pop.svg" alt="" class="hourly-pop-icon">
+        <div class="hourly-pop-value">22%</div>
+    </div>
+</li>
