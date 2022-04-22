@@ -41,43 +41,43 @@ class WeatherCity {
     static getIconURL(iconID) {
         switch (iconID) {
             case '01d':
-                return '/icons/sunny.svg';      
+                return 'icons/sunny.svg';      
             case '01n':
-                return '/icons/clear_night.svg';
+                return 'icons/clear_night.svg';
             case '02d':
-                return '/icons/partly_cloudy.svg';
+                return 'icons/partly_cloudy.svg';
             case '02n':
-                return '/icons/partly_cloudy_night.svg';
+                return 'icons/partly_cloudy_night.svg';
             case '03d':
-                return '/icons/cloudy.svg';
+                return 'icons/cloudy.svg';
             case '03n':
-                return '/icons/cloudy.svg';
+                return 'icons/cloudy.svg';
             case '04d':
-                return '/icons/cloudy.svg';
+                return 'icons/cloudy.svg';
             case '04n':
-                return '/icons/cloudy.svg';
+                return 'icons/cloudy.svg';
             case '09d':
-                return '/icons/rainy.svg';
+                return 'icons/rainy.svg';
             case '09n':
-                return '/icons/rainy.svg';
+                return 'icons/rainy.svg';
             case '10d':
-                return '/icons/rainy.svg';
+                return 'icons/rainy.svg';
             case '10n':
-                return '/icons/rainy.svg';
+                return 'icons/rainy.svg';
             case '11d':
-                return '/icons/thunderstorm.svg';
+                return 'icons/thunderstorm.svg';
             case '11n':
-                return '/icons/thunderstorm.svg';
+                return 'icons/thunderstorm.svg';
             case '13d':
-                return '/icons/snow.svg';
+                return 'icons/snow.svg';
             case '13n':
-                return '/icons/snow.svg';
+                return 'icons/snow.svg';
             case '50d':
-                return '/icons/fog.svg';
+                return 'icons/fog.svg';
             case '50n':
-                return '/icons/fog.svg';
+                return 'icons/fog.svg';
             default:
-                return '/icons/cloudy.svg';
+                return 'icons/cloudy.svg';
         }
     }
 
