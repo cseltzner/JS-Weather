@@ -148,7 +148,7 @@ async function getWeather(city, state = null, country = "US") {
  * @returns {WeatherCity} returns WeatherCity object with an undefined weatherParameters
  */
 async function getCoordinates(city, state = null, country = "US") {
-    const baseUrl = "http://api.openweathermap.org/geo/1.0/direct?"
+    const baseUrl = "https://api.openweathermap.org/geo/1.0/direct?"
     const limit = 1; // Number of locations the api will return
 
 
