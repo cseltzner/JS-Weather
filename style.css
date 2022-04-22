@@ -61,6 +61,7 @@ body {
     padding: 4px 8px;
     font-size: 2rem;
     color: white;
+    user-select: none;
 }
 
 .side-controls {
@@ -73,10 +74,6 @@ body {
 .side-controls>label {
     font-size: 1.5rem;
     margin-bottom: 8px;
-}
-
-label[for="state"] {
-    font-size: 1.2rem;
 }
 
 .side-controls>input {
@@ -419,6 +416,15 @@ main {
 .github {
     height: 50px;
     width: 50px;
+    transition: opacity .11s ease-in;
+    padding: 4px;
+}
+
+.github:hover {
+    opacity: 0.7;
+}
+
+.github-link {
     position: absolute;
     bottom: 24px;
     right: 24px;
