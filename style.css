@@ -223,12 +223,12 @@ main {
 .daily-forecast-container {
     height: auto;
     overflow: auto;
-    padding: 24px 12px;
+    padding: 24px 24px;
 }
 
 .daily-forecast-list {
     display: flex;
-    gap: 32px;
+    gap: 48px;
 }
 
 .daily-label {
@@ -246,7 +246,8 @@ main {
 }
 
 .daily-date {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
+    font-weight: bold;
 }
 
 .daily-icon {
@@ -434,7 +435,7 @@ main {
 }
 
 .github-link {
-    position: absolute;
+    position: fixed;
     bottom: 24px;
     right: 24px;
 }

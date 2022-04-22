@@ -41,43 +41,43 @@ class WeatherCity {
     static getIconURL(iconID) {
         switch (iconID) {
             case '01d':
-                return 'url(/icons/sunny.svg)';      
+                return '/icons/sunny.svg';      
             case '01n':
-                return 'url(/icons/clear_night.svg)';
+                return '/icons/clear_night.svg';
             case '02d':
-                return 'url(/icons/partly_cloudy.svg)';
+                return '/icons/partly_cloudy.svg';
             case '02n':
-                return 'url(/icons/partly_cloudy_night.svg)';
+                return '/icons/partly_cloudy_night.svg';
             case '03d':
-                return 'url(/icons/cloudy.svg)';
+                return '/icons/cloudy.svg';
             case '03n':
-                return 'url(/icons/cloudy.svg)';
+                return '/icons/cloudy.svg';
             case '04d':
-                return 'url(/icons/cloudy.svg)';
+                return '/icons/cloudy.svg';
             case '04n':
-                return 'url(/icons/cloudy.svg)';
+                return '/icons/cloudy.svg';
             case '09d':
-                return 'url(/icons/rainy.svg)';
+                return '/icons/rainy.svg';
             case '09n':
-                return 'url(/icons/rainy.svg)';
+                return '/icons/rainy.svg';
             case '10d':
-                return 'url(/icons/rainy.svg)';
+                return '/icons/rainy.svg';
             case '10n':
-                return 'url(/icons/rainy.svg)';
+                return '/icons/rainy.svg';
             case '11d':
-                return 'url(/icons/thunderstorm.svg)';
+                return '/icons/thunderstorm.svg';
             case '11n':
-                return 'url(/icons/thunderstorm.svg)';
+                return '/icons/thunderstorm.svg';
             case '13d':
-                return 'url(/icons/snow.svg)';
+                return '/icons/snow.svg';
             case '13n':
-                return 'url(/icons/snow.svg)';
+                return '/icons/snow.svg';
             case '50d':
-                return 'url(/icons/fog.svg)';
+                return '/icons/fog.svg';
             case '50n':
-                return 'url(/icons/fog.svg)';
+                return '/icons/fog.svg';
             default:
-                return 'url(/icons/cloudy.svg)';
+                return '/icons/cloudy.svg';
         }
     }
 
@@ -196,29 +196,152 @@ async function getWeatherParameters(lat, lon) {
     return respJson;
 }
 
-function updateUI(weatherCity) {
-    cityInput.value = "";
-    updateMainCityCard(weatherCity);
-    updateWeatherParameterCard(weatherCity);
-}
-
 function updateMainCityCard(weatherCity) {
     currentCityEl.textContent = weatherCity.name;
     console.log(weatherCity.weatherParameters.current.weather[0].description)
     currentWeatherDescEl.textContent = weatherCity.weatherParameters.current.weather[0].description.toString();
-    currentWeatherIconEl.style.backgroundImage = WeatherCity.getIconURL(weatherCity.weatherParameters.current.weather[0].icon);
-    currentTempEl.textContent = `${Math.floor(weatherCity.weatherParameters.current.temp)}\xB0`
+    currentWeatherIconEl.style.backgroundImage = `url(${WeatherCity.getIconURL(weatherCity.weatherParameters.current.weather[0].icon)})`;
+    currentTempEl.textContent = `${Math.round(weatherCity.weatherParameters.current.temp)}\xB0`
 }
 
 function updateWeatherParameterCard(weatherCity) {
-    feelsLikeValueEl.textContent = `${Math.floor(weatherCity.weatherParameters.current.feels_like)}\xB0`
-    popValueEl.textContent = `${Math.floor(weatherCity.weatherParameters.hourly[0].pop * 100)}%`;
+    feelsLikeValueEl.textContent = `${Math.round(weatherCity.weatherParameters.current.feels_like)}\xB0`
+    popValueEl.textContent = `${Math.round(weatherCity.weatherParameters.hourly[0].pop * 100)}%`;
     windValueEl.textContent = WeatherCity.getWindString(weatherCity.weatherParameters.current.wind_deg, weatherCity.weatherParameters.current.wind_speed);
 }
+
+function updateDailyForecastCard(weatherCity) {
+    const dailyForecast = document.querySelector('.daily-forecast-list');
+    dailyForecast.innerHTML = "";
+    let htmlToAdd = "";
+    weatherCity.weatherParameters.daily.forEach(day => {
+        htmlToAdd = htmlToAdd.concat(
+            "<li>",
+            `<div class="daily-date">${formatDailyDate(day.dt * 1000)}</div>`,
+            `<img class="daily-icon" src="${WeatherCity.getIconURL(day.weather[0].icon)}">`,
+            `<div class="daily-temp">`,
+              `<div class="daily-high">${Math.round(day.temp.max)}\xB0</div>`,
+              `<div class="daily-low">${Math.round(day.temp.min)}\xB0</div>`,
+            `</div>`,
+            `<div class="daily-pop">`,
+              `<div class="daily-pop-icon"></div>`,
+              `<div class="daily-pop-value">${Math.round(day.pop * 100)}%</div>`,
+            `</div>`,
+            "</li>"
+            );
+    });
+    dailyForecast.innerHTML = htmlToAdd;
+}
+
+function updateHourlyForecastCard(weatherCity) {
+    const hourlyForecast = document.querySelector('.hourly-forecast-list');
+    hourlyForecast.innerHTML = "";
+    let htmlToAdd = "";
+    weatherCity.weatherParameters.hourly.forEach(hour => {
+        const hourlyDate = formatHourlyDate(hour.dt * 1000);
+        htmlToAdd = htmlToAdd.concat(
+            "<li>",
+            `<div class="hourly-date">`,
+              `<div class="hourly-date-day">${hourlyDate[0]}</div>`,
+              `<div class="hourly-date-hour">${hourlyDate[1]}</div>`,
+            `</div>`,
+            `<img src="${WeatherCity.getIconURL(hour.weather[0].icon)}" class="hourly-icon">`,
+            `<div class="hourly-temp">${Math.round(hour.temp)}\xB0</div>`,
+            `<div class="hourly-wind">${WeatherCity.getWindString(hour.wind_deg, hour.wind_speed)}</div>`,
+            `<div class="hourly-pop">`,
+              `<img src="icons/pop.svg" class="hourly-pop-icon">`,
+              `<div class="hourly-pop-value">${Math.round(hour.pop * 100)}%</div>`,
+            `</div>`,
+            "</li>"
+        );
+    });
+    hourlyForecast.innerHTML = htmlToAdd;
+}
+
+function updateUI(weatherCity) {
+    cityInput.value = "";
+    updateMainCityCard(weatherCity);
+    updateWeatherParameterCard(weatherCity);
+    updateDailyForecastCard(weatherCity);
+    updateHourlyForecastCard(weatherCity);
+}
+
 
 async function init() {
     currentWeatherCity = await getWeather("phoenix", "az")
     updateUI(currentWeatherCity);
+    updateDailyForecastCard(currentWeatherCity);
+    updateHourlyForecastCard(currentWeatherCity);
 }
 
 init();
+
+/**
+ * Accepts date as MS since epoch, and returns a string in the form "DDD ##", 
+ * for example "Sat 07"
+ * 
+ * @param {Number} dateNum ms since epoch to be put into a date object
+ * @returns {String} string in the form "DDD ##", for example "Thu 28"
+ */
+function formatDailyDate(dateNum) {
+    const date = new Date(dateNum);
+    const dayOfWeek = getDay(date);
+
+    let dayNum = "";
+    if (date.getDate() < 10) {
+        dayNum = dayNum.concat("0", date.getDate());
+    } else {
+        dayNum = date.getDate();
+    }
+
+    return `${dayOfWeek} ${dayNum}`;
+}
+
+/**
+ * Accepts date as MS since epoch, and returns an array with the first value being the day of week (eg. "Sat"), 
+ * and the second value being the hour (eg. "12PM")
+ * 
+ * @param {Number} dateNum MS since epoch
+ * @returns {Array<String>} Array with first value being the day of week (eg. "Thu"), second value being the hour (eg. "1 PM")
+ */
+function formatHourlyDate(dateNum) {
+    const date = new Date(dateNum);
+    const dayOfWeek = getDay(date);
+    let hour = "";
+    if (date.getHours() < 11) {
+        hour = `${date.getHours() + 1} AM`;
+    } else {
+        hour = `${(date.getHours() % 12) + 1} PM`;
+    }
+
+    return [dayOfWeek, hour];
+}
+
+/**
+ * Accepts a date object and returns a formatted day string. 
+ * For example, "Thu" for Thursday, or "Sun" for Sunday
+ * 
+ * @param {Date} date date object
+ * @returns {String} formatted day string
+ */
+function getDay(date) {
+    switch (date.getDay()) {
+        case 0:
+            return "Sun";
+        case 1:
+            return "Mon";
+        case 2:
+            return "Tue";
+        case 3:
+            return "Wed";
+        case 4:
+            return "Thu";
+        case 5:
+            return "Fri";
+        case 6:
+            return "Sat";
+        default:
+            return "";
+    }
+
+}

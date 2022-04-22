@@ -1,14 +1,14 @@
 Example daily li
 <li>
-    <div class="daily-date">Thu 21</div>
+    <div class="daily-date"></div>
     <img class="daily-icon" src="icons/sunny.svg">
     <div class="daily-temp">
-        <div class="daily-high">90</div>
-        <div class="daily-low">64</div>
+        <div class="daily-high"></div>
+        <div class="daily-low"></div>
     </div>
     <div class="daily-pop">
         <div class="daily-pop-icon"></div>
-        <div class="daily-pop-value">10%</div>
+        <div class="daily-pop-value"></div>
     </div>
 </li>
 
@@ -22,7 +22,7 @@ Example Hourly
     <div class="hourly-temp">90</div>
     <div class="hourly-wind">13 MPH breeze SW</div>
     <div class="hourly-pop">
-        <img src="icons/pop.svg" alt="" class="hourly-pop-icon">
+        <img src="icons/pop.svg" class="hourly-pop-icon">
         <div class="hourly-pop-value">22%</div>
     </div>
 </li>
